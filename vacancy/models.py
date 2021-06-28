@@ -1,11 +1,9 @@
 from django.db import models
-from django.utils import timezone
-from django.template.defaultfilters import default, slugify
+from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django_countries.fields import CountryField
-from PIL import Image
 from tinymce.models import HTMLField
-from datetime import date
+
 
 class VacancyTypes(models.Model):
     name = models.CharField(max_length=50)
@@ -16,6 +14,7 @@ class VacancyTypes(models.Model):
     def __str__(self):
         return self.name
 
+
 class Vacancy(models.Model):
     position = models.CharField(max_length=200)
     vacancyType = models.ForeignKey(VacancyTypes, on_delete=models.CASCADE)
@@ -23,7 +22,7 @@ class Vacancy(models.Model):
     country = CountryField()
     company_logo = models.ImageField(upload_to='logos/', default='vacancy.jpg')
     salary = models.CharField(max_length=300, null=True, blank=True)
-    date_posted = models.DateField(default=timezone.now())
+    date_posted = models.DateField(auto_now_add=True)
     closing_date = models.DateField()
     description = HTMLField()
     qualifications = HTMLField()

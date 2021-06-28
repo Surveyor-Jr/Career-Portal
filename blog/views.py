@@ -8,7 +8,7 @@ from django.views.generic import(
 )
 from django.db.models import Q
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from .models import Blog
 from .forms import ArticleForm
 from taggit.models import Tag
@@ -51,7 +51,7 @@ class PostSearch(ListView):
         object_list = Blog.objects.filter(Q(title__icontains=query) | Q(summary__icontains=query))
         return object_list
 
-class PostCreate(CreateView):
+class PostCreate(LoginRequiredMixin, CreateView):
     template_name = 'blog/create_article.html'
     form_class = ArticleForm
     success_message = "Your article has been added to the blog and is now pending verification. It might take" \
@@ -67,7 +67,7 @@ class PostCreate(CreateView):
         context['tags'] = Tag.objects.all()
         return context
 
-class PostUpdate(SuccessMessageMixin, UserPassesTestMixin, UpdateView):
+class PostUpdate(LoginRequiredMixin,SuccessMessageMixin, UserPassesTestMixin, UpdateView):
     model = Blog
     template_name = 'blog/create_article.html'
     form_class = ArticleForm
@@ -89,7 +89,7 @@ class PostUpdate(SuccessMessageMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
-class PostDelete(UserPassesTestMixin, DeleteView):
+class PostDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Blog
     template_name = 'blog/post_delete_confirmation.html'
     success_url = 'post-list'

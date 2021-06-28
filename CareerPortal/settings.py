@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'vacancy.apps.VacancyConfig',
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
+    'resume.apps.ResumeConfig',
     # Additional Django Applications
     'django_countries',
     'django_summernote',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'social_django',
     'taggit',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -157,6 +159,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
