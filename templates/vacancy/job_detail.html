@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <main>
+
+        <div class="slider-area ">
+            <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+                 data-background="{{ object.company_logo.url }}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>{{ object.position }}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="job-post-company pt-120 pb-120">
+            <div class="container">
+                <div class="row justify-content-between">
+
+                    <div class="col-xl-7 col-lg-8">
+
+                        <div class="single-job-items mb-50">
+                            <div class="job-items">
+                                <div class="company-img company-img-details">
+                                    <a href="#"><img src="{{ object.company_logo.url }}" width="100" height="100"
+                                                     alt="{{ object.position }} logo"></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <a href="#">
+                                        <h4>{{ object.position }}</h4>
+                                    </a>
+                                    <ul>
+                                        <li>{{ object.vacancyType }}</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>{{ object.country.name }}
+                                            <i class="{{ object.country.flag_css }}"></i>
+                                        </li>
+                                        <li>$ {{ object.salary }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="job-post-details">
+                            <div class="post-details1 mb-50">
+
+                                <div class="small-section-tittle">
+                                    <h4>Job Description</h4>
+                                </div>
+                                <p>
+                                    {{ object.description|safe }}
+                                </p>
+                            </div>
+                            <div class="post-details2  mb-50">
+
+                                <div class="small-section-tittle">
+                                    <h4>Required Knowledge, Skills, Abilities, Education and Experience</h4>
+                                </div>
+                                <p>
+                                    {{ object.qualifications|safe }}
+                                </p>
+                            </div>
+                            {#                            <div class="post-details2  mb-50">#}
+                            {##}
+                            {#                                <div class="small-section-tittle">#}
+                            {#                                    <h4>Education + Experience</h4>#}
+                            {#                                </div>#}
+                            {#                                <ul>#}
+                            {#                                    <li>3 or more years of professional design experience</li>#}
+                            {#                                    <li>Direct response email experience</li>#}
+                            {#                                    <li>Ecommerce website design experience</li>#}
+                            {#                                    <li>Familiarity with mobile and web apps preferred</li>#}
+                            {#                                    <li>Experience using Invision a plus</li>#}
+                            {#                                </ul>#}
+                            {#                            </div>#}
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="post-details3  mb-50">
+
+                            <div class="small-section-tittle">
+                                <h4>Job Overview</h4>
+                            </div>
+                            <ul>
+                                <li>Posted date : <span>{{ object.date_posted }}</span></li>
+                                <li>Location : <span>{{ object.country.name }}</span></li>
+                                <li>Listing Source : <span><a
+                                        href="{{ object.source_link }}">{{ object.source_link }}</a></span></li>
+                                <li>Job nature : <span>{{ object.vacancyType }}</span></li>
+                                <li>Salary : <span>{{ object.salary }}</span></li>
+                                <li>Closing date : <span>{{ object.closing_date }}</span></li>
+                            </ul>
+                            <div class="apply-btn2">
+                                <a href="{{ object.source_link }}" class="btn btn-dark" target="_blank">Apply Now</a>
+                            </div>
+                        </div>
+                        <div class="post-details4  mb-50">
+
+                            <div class="small-section-tittle">
+                                <h4>Company Information</h4>
+                            </div>
+                            <span>{{ object.organization }}</span>
+                            <p>We are looking for {{ object.position }} to work in {{ object.country.name }}. The
+                                contract type is {{ object.vacancyType }}</p>
+                            <ul>
+                                <li>Name: <span>{{ object.organization }}</span></li>
+                                <li>Web : <span>-</span></li>
+                                <li>Email: <span><a href="mailto:{{ object.email }}">{{ object.email }}</a></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <div class="our-services section-pad-t10">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle text-center">
+                        <h4>Related Opportunities </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-contnet-center">
+                {% for job in other_jobs %}
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-services text-center mb-30">
+                        <div class="services-ion">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="services-cap">
+                            <h5><a href="{% url 'job-detail' job.slug job.pk %}">{{ job.position }}</a></h5>
+                            <span>{{ job.country.name }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+
+
+        </div>
+    </div>
+
+    </main>
+
+{% endblock %}

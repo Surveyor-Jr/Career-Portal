@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+             data-background="{% static 'assets/img/hero/about.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>New Article</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="blog_area single-post-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post">
+                        <div class="blog_details">
+                            <h4>Create a new article</h4>
+                            <p>Use the editor tools below to create an article that will inspire someone within the community.
+                                Don't know where to start? You read our <a href="#"><u>article guideline</u></a> and see if your intended article meets
+                            the minimum requirements for it to be approved and made public. </p>
+                            {# todo: create an article guideline page that displays the guide to creating articles on this platform #}
+                        </div>
+                    </div>
+
+                    <div class="blog-author">
+                            <!-- Article creation form -->
+                            <form method="post" enctype="multipart/form-data" name="article">
+                                {# TODO: Fix the form appearance and visual  #}
+                                {% csrf_token %}
+                                <div class="form mb-4">
+                                    {{ form|crispy }}
+                                </div>
+                                <button class="btn btn-success">Publish</button>
+                            </form>
+                        </div>
+
+                </div>
+                {% include 'blog_sidebar.html' %}
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

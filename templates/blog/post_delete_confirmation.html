@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+             data-background="{% static 'assets/img/hero/about.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Delete Your Article</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="blog_area single-post-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post">
+                        <div class="feature-img">
+                            <img class="img-fluid" src="{{ object.featured_image.url }}"
+                                 alt="{{ object.featured_image.name }}">
+                        </div>
+                        <div class="blog_details">
+                            <h2>
+                                Are you sure you want to delete this post?
+                            </h2>
+                            <ul class="blog-info-link mt-3 mb-4">
+                                <li>Post title: <a href="{% url 'blog-detail' object.slug object.pk %}">{{ object.title }}</a></li>
+                            </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div class="blog-author">
+                        <div class="media align-items-center">
+                            <div class="media-body">
+                                <a href="{% url 'blog-detail' object.slug object.pk %}" class="btn btn-info">Cancel</a>
+                                <button class="btn btn-danger">Yes, I'm sure</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {% include 'blog_sidebar.html' %}
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

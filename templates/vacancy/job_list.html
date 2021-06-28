@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load countries %}
+{% block content %}
+
+    <section class="featured-job-area feature-padding">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle text-center">
+                        <h3>Full List of Jobs Currently Available</h3>
+                        <span>Total: {{ job.count }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    {% for job in job %}
+                        <div class="single-job-items mb-30">
+                            <div class="job-items">
+                                <div class="company-img">
+                                    <a href="{% url 'job-detail' job.slug job.pk %}"><img src="{{ job.company_logo.url }}" alt="" width="100"
+                                                     height="100"></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <a href="{% url 'job-detail' job.slug job.pk %}"><h4>{{ job.position }}</h4></a>
+                                    <ul>
+                                        <li>{{ job.organization }}</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>{{ job.country.name }}<i
+                                                class="{{ job.country.flag_css }}"></i></li>
+                                        <li>{{ job.salary }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="items-link f-right">
+                                <a href="{% url 'job-detail' job.slug job.pk %}">{{ job.vacancyType }}</a>
+                                <span>{{ job.date_posted }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% if is_paginated %}
+        <div class="header-btn d-none f-right d-lg-block">
+            {% if page_obj.has_previous %}
+                <a href="?page=1" class="btn head-btn1">First</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn head-btn1">Previous</a>
+            {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <a href="?page={{ num }}" class="btn head-btn2">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?page={{ num }}" class="btn head-btn1">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn head-btn1">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn head-btn1">Last</a>
+        {% endif %}
+         </div>
+        {% endif %}
+        </div>
+    </section>
+    <section class="featured-job-area feature-padding">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle text-center">
+                        <h4>Can't find what you are looking for?</h4>
+                        <span>Perhaps try searching</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <form action="{% url 'job-result' %}" method="GET" class="search-box">
+                        <div class="input-form">
+                            <input type="text" name="find" placeholder="Job Title or Qualification">
+                        </div>
+                        <!-- TODO: Fix Dropdown appearance or Implement Dynamic Search and Retrival from Database -->
+{#                        <div class="select-form">#}
+{#                            <div class="select-itms">#}
+{#                                {% get_countries as countries %}#}
+{#                                <select name="select" id="select1">#}
+{#                                    <option value="">Any Country</option>#}
+{#                                    {% for country in countries %}#}
+{#                                    <option value="{{ country.code }}">{{ country.name }}</option>#}
+{#                                    {% endfor %}#}
+{#                                </select>#}
+{#                            </div>#}
+{#                        </div>#}
+
+                        <div class="search-form">
+                            <!-- TODO: Fix submit button actions -->
+                            <a href="#" type="submit">Find job</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

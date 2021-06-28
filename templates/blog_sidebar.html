@@ -1,0 +1,68 @@
+{% load static %}
+<div class="col-lg-4">
+    <div class="blog_right_sidebar">
+        <aside class="single_sidebar_widget search_widget">
+            <form action="{% url 'post-result' %}" method="get">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input type="text" name="find" class="form-control" placeholder='Search Keyword'
+                               onfocus="this.placeholder = ''"
+                               onblur="this.placeholder = 'Search Keyword'">
+                        <div class="input-group-append">
+                            <button class="btns" type="submit"><i class="ti-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </aside>
+        <aside class="single_sidebar_widget post_category_widget">
+            <h4 class="widget_title">Did you know?</h4>
+            <ul class="list cat-list">
+                <li>
+                    <p>You can publish articles that will inspire, motivate or change someone's life on this portal?</p>
+                    <a href="{% url 'new-article' %}" class="btn btn-dark">Create Article</a>
+                </li>
+
+            </ul>
+        </aside>
+        <aside class="single_sidebar_widget instagram_feeds">
+            <h4 class="widget_title">Ads</h4>
+            <p>This could be your Ad</p>
+
+        </aside>
+        <aside class="single_sidebar_widget popular_post_widget">
+            <h3 class="widget_title">Recent Post</h3>
+            {% for article in other_articles %}
+                <div class="media post_item">
+                    <img src="{{ article.featured_image.url }}" alt="post" height="70" width="70">
+                    <div class="media-body">
+                        <a href="{% url 'blog-detail' article.slug article.pk %}">
+                            <h3>{{ article.title }}</h3>
+                        </a>
+                        <p>{{ article.date_posted }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </aside>
+        <aside class="single_sidebar_widget instagram_feeds">
+            <h4 class="widget_title">Ads</h4>
+            <p>This could be your Ad</p>
+
+        </aside>
+        <aside class="single_sidebar_widget tag_cloud_widget">
+            <h4 class="widget_title">Tag Clouds</h4>
+            <ul class="list">
+                {% for tag in tags %}
+                    <li>
+                        <a href="#">{{ tag.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </aside>
+        <aside class="single_sidebar_widget instagram_feeds">
+            <h4 class="widget_title">Ads</h4>
+            <p>This could be your Ad</p>
+
+        </aside>
+    </div>
+</div>

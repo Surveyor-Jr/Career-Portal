@@ -1,0 +1,340 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {% if object.position %}
+        <title>{{ object.position }} Post | African Surveyors Connect</title>
+    {% else %}
+        <title>Career Portal | African Surveyors Connect </title>
+    {% endif %}
+    {% if object.position %}
+        <meta name="description"
+              content="{{ object.organization }} is looking for {{ object.position }} in {{ object.country.name }} for a {{ object.vacancyType }} position.">
+    {% else %}
+        <meta name="description" content="A career portal where you get hired and find out who to hire">
+    {% endif %}
+    <meta name="keywords" content="Career Portal, Surveying, Geomatics, Jobs, Careers">
+    <meta name="author" content="African Surveyors Connect">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/themify-icons.css' %}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'assets/css/style.css+responsive.css.pagespeed.cc.zGtA2kqCn1.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/slicknav.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/price_rangs.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl.carousel.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/nice-select.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/magnific-popup.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/fontawesome-all.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/A.style.css.pagespeed.cf.l1NnhdJCS-.css' %}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'assets/css/A.style.css+responsive.css,Mcc.zGtA2kqCn1.css.pagespeed.cf.P8d1jnMRmp.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/1.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/2.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/3.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/4.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/5.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/6.css' %}"/>
+    <!-- Fontawesome Registration -->
+    <script src="https://use.fontawesome.com/270e67d06c.js"></script>
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+            rel="stylesheet"
+    />
+
+</head>
+<body>
+
+<div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+                <img src="{% static 'assets/img/logo/logo.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<header>
+
+    <div class="header-area header-transparrent">
+        <div class="headder-top header-sticky">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-2">
+
+                        <div class="logo">
+                            <a href="{% url 'home-page' %}"><img src="{% static 'assets/img/logo/logo.png' %}"
+                                                                 alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                        <div class="menu-wrapper">
+
+                            <div class="main-menu">
+                                <nav class="d-none d-lg-block">
+                                    <ul id="navigation">
+                                        <li><a href="{% url 'job-list' %}">Find A Job</a></li>
+                                        <li><a href="#">Freelancer</a>
+                                            <ul class="submenu">
+                                                <li><a href="#">Become A Freelancer</a></li>
+                                                <li><a href="#">Hire A Freelancer</a></li>
+                                                <li><a href="#">About Freelancing</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="{% url 'post-list' %}">Blog</a></li>
+                                        <li><a href="#">Extras</a>
+                                            <ul class="submenu">
+                                                <li><a href="#">Post A Job</a></li>
+                                                <li><a href="{% url 'new-article' %}">Post an Article</a></li>
+                                                <li><a href="#">Advertise Here</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">About</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            {% if user.is_authenticated %}
+                                <div class="header-btn d-none f-right d-lg-block">
+                                    <a href="{% url 'profile' %}" class="btn btn-info">Profile</a>
+                                    <a href="{% url 'logout' %}" class="btn btn-outline-dark">Logout</a>
+                                </div>
+                            {% else %}
+                                <div class="header-btn d-none f-right d-lg-block">
+                                    <a href="{% url 'register' %}" class="btn btn-primary">Register</a>
+                                    <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<!-- Web Content -->
+{% block content %}{% endblock %}
+<!-- Web Content /-->
+
+<!-- Footer -->
+<footer>
+
+    <div class="footer-area footer-bg footer-padding">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-footer-caption mb-50">
+                        <div class="single-footer-caption mb-30">
+                            <div class="footer-tittle">
+                                <h4>About Us</h4>
+                                <div class="footer-pera">
+                                    <p>A career portal where you get hired and find out who to hire</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Contact Info</h4>
+                            <ul>
+                                <li>
+                                    <p>
+                                        Harare<br>Zimbabwe<br>Africa
+                                    </p>
+                                </li>
+                                <li><a href="tel:+263718870810">Phone : +(263)-71-8-870-810</a></li>
+                                <li><a href="mailto:info@africansurveyors.net">Email : info@africansurveyors.net</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Important Links</h4>
+                            <ul>
+                                <li><a href="#">About Career Portal</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Newsletter</h4>
+                            <div class="footer-pera footer-pera2">
+                                <p>Subscribe to our Career tips Newsletter</p>
+                            </div>
+
+                            <div class="footer-form">
+                                <div id="mc_embed_signup">
+                                    <form target="_blank" action="#" class="subscribe_form relative mail_part">
+                                        <input type="email" name="email" id="newsletter-form-email"
+                                               placeholder="Email Address" class="placeholder hide-on-focus"
+                                               onfocus="this.placeholder = ''"
+                                               onblur="this.placeholder = ' Email Address '">
+                                        <div class="form-icon">
+                                            <button type="submit" name="submit" id="newsletter-submit"
+                                                    class="email_icon newsletter-submit button-contactForm"><img
+                                                    src="{% static 'assets/img/icon/form.png' %}" alt=""></button>
+                                        </div>
+                                        <div class="mt-10 info"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row footer-wejed justify-content-between">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+
+                    <div class="footer-logo mb-20">
+                        <a href="index-2.html"><img src="{% static 'assets/img/logo/logo2_footer.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="footer-tittle-bottom">
+                        <span>5000+</span>
+                        <p>Job Listings</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="footer-tittle-bottom">
+                        <span>451</span>
+                        <p>Freelancers</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+
+                    <div class="footer-tittle-bottom">
+                        <span>568</span>
+                        <p>Organizations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom-area footer-bg">
+        <div class="container">
+            <div class="footer-border">
+                <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-xl-10 col-lg-10 ">
+                        <div class="footer-copy-right">
+                            <p>
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script>
+                                All rights reserved | Built By <a href="https:surveyor-jr.github.com/" target="_blank">Surveyor-Jr</a>
+                                with
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2">
+                        <div class="footer-social f-right">
+                            <a href="https://facebook.com/africansurveyors"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/africa_survey"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'assets/js/animated.headline.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/contact.js' %}"></script>
+<script src="{% static 'assets/js/gijgo.min.html' %}"></script>
+<script src="{% static 'assets/js/jquery.ajaxchimp.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.form.js' %}"></script>
+<script src="{% static 'assets/js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.scrollUp.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.slicknav.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.sticky.js' %}"></script>
+<script src="{% static 'assets/js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'assets/js/mail-script.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'assets/js/owl.carousel.min.js+slick.min.js.pagespeed.jc.oxyC_wkbnG.js' %}"></script>
+<script src="{% static 'assets/js/plugins.js' %}"></script>
+<script src="{% static 'assets/js/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/popper.min.js+bootstrap.min.js+jquery.slicknav.min.js.pagespeed.jc.3NnyDUA-7y.js' %}"></script>
+<script src="{% static 'assets/js/price_rangs.js' %}"></script>
+<script src="{% static 'assets/js/slick.min.js' %}"></script>
+<script src="{% static 'assets/js/wow.min.js' %}"></script>
+<script src="{% static 'assets/js/1.js' %}"></script>
+<script src="{% static 'assets/js/2.js' %}"></script>
+<script src="{% static 'assets/js/3.js' %}"></script>
+<script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+
+<script>eval(mod_pagespeed_6Tpp09ous7);</script>
+<script>eval(mod_pagespeed_5wqr$jczR8);</script>
+
+<script>eval(mod_pagespeed_Vzes1EvQ2F);</script>
+
+<script>eval(mod_pagespeed_PGtHJj7Xl2);</script>
+<script>eval(mod_pagespeed_$1OX5Adeeh);</script>
+<script>eval(mod_pagespeed_qBbHcNHq8x);</script>
+<script>eval(mod_pagespeed_rVlFpRcU$I);</script>
+<script>eval(mod_pagespeed_OGBGVL$lOW);</script>
+
+<script>eval(mod_pagespeed_PJjmrN7Cdo);</script>
+<script>eval(mod_pagespeed_4GLHBUaVMD);</script>
+<script>eval(mod_pagespeed_J$WVXSuXo5);</script>
+
+<script>eval(mod_pagespeed_ICVeveW44r);</script>
+<script>eval(mod_pagespeed_3juFdCxumk);</script>
+<script>eval(mod_pagespeed_cnWvudSFcU);</script>
+<script>eval(mod_pagespeed_0DuZ3VbgxX);</script>
+<script>eval(mod_pagespeed_NXuhoXTmRK);</script>
+
+<script>eval(mod_pagespeed_XYwLTrN8la);</script>
+<script>eval(mod_pagespeed_3GNvlW7uYx);</script>
+
+</body>
+
+</html>
